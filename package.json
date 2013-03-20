@@ -1,0 +1,17 @@
+{
+  "name": "streamhub-sdk-widget-test",
+  "version": "0.0.0",
+  "devDependencies": {
+    "bower": "*",
+    "jsdoc3": "git://github.com/jsdoc3/jsdoc.git#v3.1.0",
+    "http-server": "*"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install",
+    "test": "open tests/index.html",
+    "start": "./node_modules/http-server/bin/http-server"
+  },
+  "streamhub": {
+    "sampleImage": "http://icons.iconseeker.com/png/fullsize/themepark-icon/template.png"
+  }
+}

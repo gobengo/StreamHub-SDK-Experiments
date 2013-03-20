@@ -1,0 +1,12 @@
+{
+  "name": "streamhub-sdk-widget-test",
+  "version": "0.0.0",
+  "main": [
+    "./src/main.js"
+  ],
+  "dependencies": {
+    "streamhub-sdk": "git://github.com/genehallman/streamhub-sdk.git",
+    "jquery": "1.9",
+    "requirejs": "*"
+  }
+}
