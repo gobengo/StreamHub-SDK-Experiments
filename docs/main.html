@@ -1,0 +1,39 @@
+<h1>StreamHub SDK Experiment</h1>
+<p>This experiment requires jQuery and the StreamHub SDK</p>
+<pre><code>require [
+    'jquery'
+    'streamhub-sdk'
+], ($, sdk) -&gt;
+</code></pre>
+<p>Create the options that will configure the Livefyre Stream</p>
+<pre><code>    opts =
+        network: 'labs-t402.fyre.co'
+        siteId: '303827'
+        articleId: 'sxsw_photos_0'
+        environment: 't402.livefyre.com'
+</code></pre>
+<p>Ask the SDK to create us some streams for the Collection pointed to by the options. We'll only use the <code>streams.main</code> stream for now, and it will give us real-time data.</p>
+<p>When the stream is readable, we'll read data from it and render the data using <code>renderData</code>. If the stream ever emits 'end', restart the stream to continue polling.</p>
+<pre><code>    sdk.createLivefyreStreams opts, (err, stream) -&gt;
+
+        stream.main.on 'end', () -&gt;
+            stream.main.start()
+
+        stream.main.on 'readable', () -&gt;
+            renderData stream.main.read()
+
+        stream.main.start()
+</code></pre>
+<p>Once we <code>.read</code> data from the stream, we'll render its <code>authorId</code> and <code>bodyHtml</code> to HTML and prepend it to an element on the page.</p>
+<pre><code>    $widget = $('#example')
+
+    renderData = (data) -&gt;
+        dataHtml = "&lt;div&gt;&lt;p&gt;{{ authorId }}&lt;/p&gt;&lt;div&gt;{{ bodyHtml }}&lt;/div&gt;&lt;/div&gt;"
+            .replace("{{ authorId }}", data.content.authorId)
+            .replace("{{ bodyHtml }}", data.content.bodyHtml or '')
+
+        $newEl = $(dataHtml)
+        $newEl.prependTo $widget
+
+    return
+</code></pre>
