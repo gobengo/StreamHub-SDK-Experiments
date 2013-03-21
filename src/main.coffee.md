@@ -17,7 +17,7 @@ Create the options that will configure the Livefyre Stream
 
 Ask the SDK to create us some streams for the Collection pointed to by the options. We'll only use the `streams.main` stream for now, and it will give us real-time data.
 
-When the stream is readable, we'll read data from it and render the data using `renderData`. If the stream ever emits 'end', restart the stream to continue polling.
+When the stream is readable, we'll read data from it and render the data using `renderData`.
 
         sdk.createLivefyreStreams opts, (err, stream) ->
 
