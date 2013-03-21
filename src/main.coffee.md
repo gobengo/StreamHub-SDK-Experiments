@@ -20,9 +20,6 @@ Ask the SDK to create us some streams for the Collection pointed to by the optio
 When the stream is readable, we'll read data from it and render the data using `renderData`. If the stream ever emits 'end', restart the stream to continue polling.
 
         sdk.createLivefyreStreams opts, (err, stream) ->
-            
-            stream.main.on 'end', () ->
-                stream.main.start()
 
             stream.main.on 'readable', () ->
                 renderData stream.main.read()

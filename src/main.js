@@ -9,9 +9,6 @@
       environment: 't402.livefyre.com'
     };
     sdk.createLivefyreStreams(opts, function(err, stream) {
-      stream.main.on('end', function() {
-        return stream.main.start();
-      });
       stream.main.on('readable', function() {
         return renderData(stream.main.read());
       });
